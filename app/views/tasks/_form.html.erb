@@ -1,27 +1,64 @@
 <%= form_for :task,
              url: {action: "create"} do |f| %>
+
   <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= f.label :date, 'Date' %>
-        <%= f.date_field :date, min: Date.today, class: 'form-control', required: true %>
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= f.label :date, 'Date' %>
+            <%= f.date_field :date, min: Date.today, class: 'form-control', required: true %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= f.label :user, 'Staff' %>
+            <%= f.select :user_id, options_from_collection_for_select(staffs, :id, :email), {} , { class: 'form-control', required: true } %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= f.label :note, 'Note' %>
+            <%= f.text_area :note, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= f.label :latitude, 'Latitude' %>
+            <%= f.text_field :latitude, class: "form-control", required: true %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= f.label :longitude, 'Longitude' %>
+            <%= f.text_field :longitude, class: "form-control", required: true %>
+          </div>
+        </div>
+      </div>
+      <%= f.hidden_field :admin_id, value: current_admin.id %>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= f.submit 'Save', class: 'btn btn-primary form-control' %>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= f.label :user, 'Staff' %>
-        <%= f.select :user_id, options_from_collection_for_select(staffs, :id, :email), {} , { class: 'form-control', required: true } %>
-      </div>
-    </div>
-  </div>
-  <%= f.hidden_field :admin_id, value: current_admin.id %>
-  <div class="row">
-    <div class="col-md-3">
-      <div class="form-group">
-        <%= f.submit 'Save', class: 'btn btn-primary form-control' %>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-block">
+          <div id="map"></div>
+        </div>
       </div>
     </div>
   </div>
 <% end %>
+
