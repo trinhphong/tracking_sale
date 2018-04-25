@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @staffs = User.all
   end
 
   def create
