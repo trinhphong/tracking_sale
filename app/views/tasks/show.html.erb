@@ -1,0 +1,11 @@
+<h1>Show Task</h1>
+<%= hidden_field_tag :show_latitude, @task.latitude %>
+<%= hidden_field_tag :show_longitude, @task.longitude %>
+<%= hidden_field_tag :show_staff_email, @task.user.email %>
+<%= hidden_field_tag :show_note, @task.note %>
+<%= hidden_field_tag :show_date, @task.date %>
+<div class="card">
+  <div class="card-block">
+    <div id="show-map" style="height: 500px;"></div>
+  </div>
+</div>
