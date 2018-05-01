@@ -1,0 +1,18 @@
+<div class="hidden-data">
+  <%= hidden_field_tag "number-of-tasks", @tasks.length %>
+  <% @tasks.each_with_index do |task, idx| %>
+    <div id="hidden-field-task-<%=idx%>">
+      <%= hidden_field_tag "task-#{task.id}", task.id, class: 'hidden-task-id' %>
+      <%= hidden_field_tag "staff-email-#{task.id}", task.user.email, class: 'hidden-staff-email' %>
+      <%= hidden_field_tag "task-note-#{task.id}", task.note, class: 'hidden-task-note' %>
+      <%= hidden_field_tag "latitude-#{task.id}", task.latitude, class: 'hidden-latitude' %>
+      <%= hidden_field_tag "longitude-#{task.id}", task.longitude, class: 'hidden-longitude' %>
+    </div>
+  <% end %>
+</div>
+
+<div class="card">
+  <div class="card-block">
+    <div id="dashboard-map"></div>
+  </div>
+</div>

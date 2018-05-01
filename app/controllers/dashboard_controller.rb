@@ -1,3 +1,5 @@
 class DashboardController < ApplicationController
-  def index; end
+  def index
+    @tasks = Task.where(date: Date.today)
+  end
 end
