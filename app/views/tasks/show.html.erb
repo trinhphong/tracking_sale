@@ -4,6 +4,10 @@
 <%= hidden_field_tag :show_staff_email, @task.user.email %>
 <%= hidden_field_tag :show_note, @task.note %>
 <%= hidden_field_tag :show_date, @task.date %>
+<%= hidden_field_tag :expect_sale, @task.expect_sale %>
+<%= hidden_field_tag :actual_sale, @task.actual_sale %>
+<%= hidden_field_tag :check_in, @task.check_in %>
+<%= hidden_field_tag :check_out, @task.check_out %>
 <div class="card">
   <div class="card-block">
     <div id="show-map" style="height: 500px;"></div>

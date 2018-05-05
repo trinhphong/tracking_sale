@@ -1,0 +1,46 @@
+<div class="date-box">
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-1">
+      <%= link_to 'Previous', tasks_url(:date => @date.prev_day), class: 'btn btn-warning form-control' %>
+    </div>
+    <div class="col-2 text-center">
+      <h3>Date: <%= @date %></h3>
+    </div>
+    <div class="col-1">
+      <%= link_to 'Next', tasks_url(:date => @date.next_day), class: 'btn btn-warning form-control' %>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-2">
+      <%= link_to 'Create', new_task_path, class: 'btn btn-primary form-control' %>
+    </div>
+  </div>
+</div>
+<table class="table table-striped task-table">
+  <thead>
+    <tr>
+      <th width="5%" scope="col">#</th>
+      <th width="15%" scope="col">Staff</th>
+      <th width="10%" scope="col">Expect</th>
+      <th width="10%" scope="col">Actual</th>
+      <th width="10%"  scope="col">Check-in</th>
+      <th width="10%"  scope="col">Check-out</th>
+      <th width="20%" scope="col">Position</th>
+      <th width="5%" scope="col">Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each.with_index(1) do |task, idx| %>
+      <tr>
+        <th width="5%" scope="row"><%= idx %></th>
+        <td width="15%"><%= task.user.email %></td>
+        <td width="10%"><%= task.expect_sale %></td>
+        <td width="10%"><%= task.actual_sale %></td>
+        <td width="10%" ><%= task.check_in %></td>
+        <td width="10%" ><%= task.check_out %></td>
+        <td width="20%"><%= task.latitude %> - <%= task.longitude %></td>
+        <td width="5%"><%= link_to 'Detail', task_path(task.id)%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

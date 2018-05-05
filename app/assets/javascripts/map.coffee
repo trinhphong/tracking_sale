@@ -37,6 +37,10 @@ jQuery ->
         note        = $("#task-note-#{task_id}").val()
         lat         = parseFloat $("#latitude-#{task_id}").val()
         lon         = parseFloat $("#longitude-#{task_id}").val()
+        expect_sale = parseFloat $("#expect-sale-#{task_id}").val()
+        actual_sale = parseFloat $("#actual-sale-#{task_id}").val()
+        check_in    = $("#check-in-#{task_id}").val()
+        check_out   = $("#check-out-#{task_id}").val()
 
         pinColor = getRandomColor()
         pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor)
@@ -54,8 +58,12 @@ jQuery ->
             staff_email = $("#staff-email-#{task_id}").val()
             note        = $("#task-note-#{task_id}").val()
             contentString =
-              '<div><b>Staff: </b>' + staff_email + '</div>' +
-              '<div><b>Note:  </b>' + note    + '</div>'
+              '<div><b>Staff: </b>'     + staff_email + '</div>' +
+              '<div><b>Note:  </b>'     + note        + '</div>' +
+              '<div><b>Expect: </b>'    + expect_sale + '$</div>' +
+              '<div><b>Actual: </b>'    + actual_sale + '$</div>' +
+              '<div><b>Check-in: </b>'  + check_in    + '</div>' +
+              '<div><b>Check-out: </b>' + check_out   + '</div>'
             infowindow.setContent contentString
             infowindow.open dashboard_map, marker
             return
@@ -66,6 +74,10 @@ jQuery ->
       staff_email = $('#show_staff_email').val()
       note_val = $('#show_note').val()
       date_val = $('#show_date').val()
+      expect_sale = parseFloat $("#expect_sale").val()
+      actual_sale = parseFloat $("#actual_sale").val()
+      check_in    = $("#check-in").val()
+      check_out   = $("#check-out").val()
       show_position  = {lat: lat_val, lng: lng_val}
 
       show_map = new google.maps.Map document.getElementById('show-map'), {
@@ -74,9 +86,13 @@ jQuery ->
       }
 
       contentString =
-        '<div><b>Date:  </b>' + date_val    + '</div>' +
-        '<div><b>Staff: </b>' + staff_email + '</div>' +
-        '<div><b>Note:  </b>' + note_val    + '</div>'
+        '<div><b>Date:  </b>'     + date_val    + '</div>' +
+        '<div><b>Staff: </b>'     + staff_email + '</div>' +
+        '<div><b>Note:  </b>'     + note_val    + '</div>' +
+        '<div><b>Expect: </b>'    + expect_sale + '$</div>' +
+        '<div><b>Actual: </b>'    + actual_sale + '$</div>' +
+        '<div><b>Check-in: </b>'  + check_in    + '</div>' +
+        '<div><b>Check-out: </b>' + check_out   + '</div>'
 
       infowindow = new google.maps.InfoWindow({
         content: contentString

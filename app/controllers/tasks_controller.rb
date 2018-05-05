@@ -1,6 +1,11 @@
 class TasksController < ApplicationController
   before_action :authenticate_admin!
 
+  def index
+    @date  = Date.parse(params[:date]) rescue Date.today
+    @tasks = Task.where(date: params[:date] || Date.today)
+  end
+
   def new
     @task = Task.new
     @staffs = User.all
@@ -23,6 +28,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:date, :user_id, :admin_id, :note, :latitude, :longitude)
+    params.require(:task).permit(:date, :user_id, :admin_id, :note, :latitude, :longitude, :expect_sale)
   end
 end
