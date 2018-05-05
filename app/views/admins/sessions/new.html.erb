@@ -1,26 +1,17 @@
-<h2>Log in</h2>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+  <div class = "container">
+    <div class="wrapper">
+      <form action="" method="post" name="Login_Form" class="form-signin">
+          <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
+          <hr class="colorgraph"><br>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
+          <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
+          <div class="actions">
+            <%= f.submit "Log in", class:"btn btn-lg btn-primary btn-block" %>
+          </div>
+      </form>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
 <% end %>
-
-<%= render "admins/shared/links" %>

@@ -11,4 +11,9 @@
       </li>
     </ul>
   </div>
+  <form class="form-inline">
+    <% if current_admin.present? %>
+      <%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: "btn btn-outline-danger" %>
+    <% end %>
+  </form>
 </nav>
