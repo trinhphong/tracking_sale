@@ -40,8 +40,20 @@
           </div>
         </div>
       </div>
-      <%= f.hidden_field :latitude, required: true %>
-      <%= f.hidden_field :longitude, required: true %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :latitude, 'Latitude' %>
+            <%= f.text_field :latitude, class: 'form-control', required: true, readonly: true %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :longitude, 'Longitude' %>
+            <%= f.text_field :longitude, class: 'form-control', required: true, readonly: true %>
+          </div>
+        </div>
+      </div>
       <%= f.hidden_field :admin_id, value: current_admin.id %>
       <div class="row">
         <div class="col-md-3">
