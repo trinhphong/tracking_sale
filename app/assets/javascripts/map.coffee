@@ -1,7 +1,7 @@
 jQuery ->
   markersArray = []
-  lat_field = $('#task_latitude')
-  lng_field = $('#task_longitude')
+  lat_field = $('#outlet_latitude')
+  lng_field = $('#outlet_longitude')
   infowindow = null
 
   window.initMap = ->
@@ -10,6 +10,11 @@ jQuery ->
         center: {lat: 10.800900, lng: 106.650511}
         zoom: 12
       }
+
+      geocoder = new google.maps.Geocoder();
+
+      document.getElementById('submit-search-map').addEventListener 'click', ->
+        geocodeAddress geocoder, map
 
       map.addListener 'click', (e) ->
         placeMarkerAndPanTo e.latLng, map
@@ -69,30 +74,53 @@ jQuery ->
             return
 
     if $('#show-map').size() > 0
+      show_map = new google.maps.Map document.getElementById('show-map'), {
+        center: {lat: 10.800900, lng: 106.650511}
+        zoom: 12
+      }
+
+      number_of_outlets = $('#number-of-outlets').val()
+      infowindow = new google.maps.InfoWindow()
+
+      for idx in [0..(number_of_outlets - 1)]
+        outlet_id   = $("#hidden-field-task-outlet-#{idx} .hidden-task-outet-id").val()
+        lat_val     = parseFloat $("#outlet-latitude-#{outlet_id}").val()
+        lng_val     = parseFloat $("#outlet-longitude-#{outlet_id}").val()
+
+        pinColor = getRandomColor()
+        pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor)
+
+        marker = new google.maps.Marker
+          position: {lat: lat_val, lng: lng_val}
+          map: show_map
+          animation: google.maps.Animation.DROP
+          icon: pinImage
+
+        google.maps.event.addListener marker, 'click', do (marker, idx) ->
+          ->
+            outlet_id = $("#hidden-field-task-outlet-#{idx} .hidden-task-outet-id").val()
+            address   = $("#outlet-address-#{outlet_id}").val()
+            priority  = $("#outlet-priority-#{outlet_id}").val()
+            contentString =
+              '<div><b>Priority:  </b>'    + priority   + '</div>' +
+              '<div><b>Address:  </b>'     + address    + '</div>'
+            infowindow.setContent contentString
+            infowindow.open show_map, marker
+            return
+
+    if $('#show-outlet-map').size() > 0
       lat_val = parseFloat($('#show_latitude').val())
       lng_val = parseFloat($('#show_longitude').val())
-      staff_email = $('#show_staff_email').val()
-      note_val = $('#show_note').val()
-      date_val = $('#show_date').val()
-      expect_sale = parseFloat $("#expect_sale").val()
-      actual_sale = parseFloat $("#actual_sale").val()
-      check_in    = $("#check-in").val()
-      check_out   = $("#check-out").val()
+      address = $('#address').val()
       show_position  = {lat: lat_val, lng: lng_val}
 
-      show_map = new google.maps.Map document.getElementById('show-map'), {
+      outlet_show_map = new google.maps.Map document.getElementById('show-outlet-map'), {
         center: show_position
         zoom: 12
       }
 
       contentString =
-        '<div><b>Date:  </b>'     + date_val    + '</div>' +
-        '<div><b>Staff: </b>'     + staff_email + '</div>' +
-        '<div><b>Note:  </b>'     + note_val    + '</div>' +
-        '<div><b>Expect: </b>'    + expect_sale + '$</div>' +
-        '<div><b>Actual: </b>'    + actual_sale + '$</div>' +
-        '<div><b>Check-in: </b>'  + check_in    + '</div>' +
-        '<div><b>Check-out: </b>' + check_out   + '</div>'
+        '<div><b>Address:  </b>' + address + '</div>'
 
       infowindow = new google.maps.InfoWindow({
         content: contentString
@@ -100,15 +128,14 @@ jQuery ->
 
       marker = new google.maps.Marker
         position: show_position
-        map: show_map
-        title: staff_email + ' - ' + note_val
+        map: outlet_show_map
         animation: google.maps.Animation.DROP
 
       window.addEventListener 'load', (e) ->
-        infowindow.open show_map, marker
+        infowindow.open outlet_show_map, marker
 
       marker.addListener 'click', (e) ->
-        infowindow.open show_map, marker
+        infowindow.open outlet_show_map, marker
 
   placeMarkerAndPanTo = (latLng, map) ->
     markersArray.pop().setMap(null) while(markersArray.length)
@@ -131,3 +158,16 @@ jQuery ->
       color += letters[Math.round(Math.random() * 15)]
       i++
     color
+
+  geocodeAddress = (geocoder, resultsMap) ->
+    address = document.getElementById('outlet_address').value
+    geocoder.geocode { 'address': address }, (results, status) ->
+      if status == 'OK'
+        resultsMap.setCenter results[0].geometry.location
+        updateFields(results[0].geometry.location)
+        marker = new (google.maps.Marker)(
+          map: resultsMap
+          position: results[0].geometry.location)
+      else
+        alert 'Geocode was not successful for the following reason: ' + status
+

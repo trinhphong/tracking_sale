@@ -1,13 +1,39 @@
-<h1>Show Task</h1>
-<%= hidden_field_tag :show_latitude, @task.latitude %>
-<%= hidden_field_tag :show_longitude, @task.longitude %>
-<%= hidden_field_tag :show_staff_email, @task.user.email %>
-<%= hidden_field_tag :show_note, @task.note %>
-<%= hidden_field_tag :show_date, @task.date %>
-<%= hidden_field_tag :expect_sale, @task.expect_sale %>
-<%= hidden_field_tag :actual_sale, @task.actual_sale %>
-<%= hidden_field_tag :check_in, @task.check_in %>
-<%= hidden_field_tag :check_out, @task.check_out %>
+<div class="hidden-data">
+  <%= hidden_field_tag "number-of-outlets", @task.outlets.length %>
+  <% @task.outlets.each_with_index do |outlet, idx| %>
+    <div id="hidden-field-task-outlet-<%=idx%>">
+      <%= hidden_field_tag "task-outlet-#{outlet.id}", outlet.id, class: 'hidden-task-outet-id' %>
+      <%= hidden_field_tag "outlet-latitude-#{outlet.id}", outlet.latitude %>
+      <%= hidden_field_tag "outlet-longitude-#{outlet.id}", outlet.longitude %>
+      <%= hidden_field_tag "outlet-address-#{outlet.id}", outlet.address %>
+      <%= hidden_field_tag "outlet-priority-#{outlet.id}", Taskoutlet.find_by(task_id: @task.id, outlet_id: outlet.id).priority %>
+    </div>
+  <% end %>
+</div>
+
+<table class="table table-striped show-task-table">
+  <thead>
+    <tr>
+      <th width="20%" scope="col">Staff</th>
+      <th width="20%" scope="col">Expect</th>
+      <th width="20%" scope="col">Actual</th>
+      <th width="15%" scope="col">Check-in</th>
+      <th width="15%" scope="col">Check-out</th>
+      <th width="10%" scope="col">Outlets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="20%"><%= @task.user.email %></td>
+      <td width="20%"><%= @task.expect_sale %></td>
+      <td width="20%"><%= @task.actual_sale %></td>
+      <td width="15%"><%= @task.check_in %></td>
+      <td width="15%"><%= @task.check_out %></td>
+      <td width="10%"><%= @task.outlets.length %>
+    </tr>
+  </tbody>
+</table>
+
 <div class="card">
   <div class="card-block">
     <div id="show-map" style="height: 500px;"></div>

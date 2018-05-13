@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180505171920) do
+ActiveRecord::Schema.define(version: 20180512081035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,24 @@ ActiveRecord::Schema.define(version: 20180505171920) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_admins_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "outlets", force: :cascade do |t|
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "taskoutlets", force: :cascade do |t|
+    t.integer  "task_id"
+    t.integer  "outlet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "priority"
+    t.index ["outlet_id"], name: "index_taskoutlets_on_outlet_id", using: :btree
+    t.index ["task_id"], name: "index_taskoutlets_on_task_id", using: :btree
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -66,4 +84,6 @@ ActiveRecord::Schema.define(version: 20180505171920) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "taskoutlets", "outlets"
+  add_foreign_key "taskoutlets", "tasks"
 end

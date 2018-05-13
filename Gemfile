@@ -59,3 +59,5 @@ gem 'bootstrap', '~> 4.1.0'
 gem 'geocoder'
 
 gem 'will_paginate', '~> 3.1.0'
+
+gem 'chosen-rails', '~> 1.8.3'

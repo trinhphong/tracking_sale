@@ -1,0 +1,49 @@
+<%= form_for :outlet,
+             url: {action: "create"} do |f| %>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= f.label :address, 'Address' %>
+            <div class="input-group">
+              <%= f.text_field :address, class: 'form-control', required: true %>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" id='submit-search-map'>Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :latitude, 'Latitude' %>
+            <%= f.text_field :latitude, class: 'form-control', required: true, readonly: true %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :longitude, 'Longitude' %>
+            <%= f.text_field :longitude, class: 'form-control', required: true, readonly: true %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= f.submit 'Save', class: 'btn btn-primary form-control' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-block">
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

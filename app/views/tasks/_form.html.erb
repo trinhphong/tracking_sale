@@ -15,7 +15,7 @@
         <div class="col-md-12">
           <div class="form-group">
             <%= f.label :user, 'Staff' %>
-            <%= f.select :user_id, options_from_collection_for_select(staffs, :id, :email), {} , { class: 'form-control', required: true } %>
+            <%= f.select :user_id, options_from_collection_for_select(staffs, :id, :email), {} , { class: 'ui fluid  selection dropdown form-control', required: true } %>
           </div>
         </div>
       </div>
@@ -41,32 +41,24 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
-            <%= f.label :latitude, 'Latitude' %>
-            <%= f.text_field :latitude, class: 'form-control', required: true, readonly: true %>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <%= f.label :longitude, 'Longitude' %>
-            <%= f.text_field :longitude, class: 'form-control', required: true, readonly: true %>
+            <%= f.label :outlets, 'Outlets' %>
+            <%= f.collection_select :outlet_ids,
+              Outlet.all ,:id,:address,
+              { include_blank: true},
+              { class: 'chosen-select form-control', :multiple=>true, :data => { :placeholder => ' ' }}
+            %>
           </div>
         </div>
       </div>
+
       <%= f.hidden_field :admin_id, value: current_admin.id %>
       <div class="row">
         <div class="col-md-3">
           <div class="form-group">
             <%= f.submit 'Save', class: 'btn btn-primary form-control' %>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-block">
-          <div id="map"></div>
         </div>
       </div>
     </div>

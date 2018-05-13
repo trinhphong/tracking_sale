@@ -1,0 +1,10 @@
+<h1>Show Outlet</h1>
+<%= hidden_field_tag :show_latitude, @outlet.latitude %>
+<%= hidden_field_tag :show_longitude, @outlet.longitude %>
+<%= hidden_field_tag :address, @outlet.address %>
+
+<div class="card">
+  <div class="card-block">
+    <div id="show-outlet-map" style="height: 500px;"></div>
+  </div>
+</div>

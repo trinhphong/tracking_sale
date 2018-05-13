@@ -1,0 +1,30 @@
+<div class="container-fluid outlet-index-section">
+  <div class="row">
+    <div class="col-10"></div>
+    <div class="col-2">
+      <%= link_to 'Create', new_outlet_path, class: 'btn btn-primary form-control' %>
+    </div>
+  </div>
+  <table class="table table-striped outlet-table">
+    <thead>
+      <tr>
+        <th width="5%" scope="col">#</th>
+        <th width="40%" scope="col">Address</th>
+        <th width="15%" scope="col">Position</th>
+        <th width="5" scope="col"></th>
+        <th width="5" scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @outlets.each.with_index(1) do |outlet, idx| %>
+        <tr>
+          <th width="5%" scope="row"><%= idx %></th>
+          <td width="40%"><%= outlet.address %></td>
+          <td width="15%"><%= outlet.latitude %> - <%= outlet.longitude %></td>
+          <td width="5%"><%= link_to 'View', outlet_path(outlet.id) %></td>
+          <td width="5%"><%= link_to 'Delete', outlet_path(outlet.id), method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

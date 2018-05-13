@@ -3,7 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #map,
 #show-map,
-#dashboard-map {
+#dashboard-map,
+#outlet-show-map {
   height: 500px;
 }
 
@@ -11,6 +12,15 @@
   margin-top: 25px;
 }
 
-.task-table {
+.task-table,
+.outlet-table {
   margin-top: 25px;
+}
+
+.outlet-index-section {
+  margin-top: 25px;
+}
+
+.chosen-container .chosen-container-multi {
+  width: 100%;
 }
