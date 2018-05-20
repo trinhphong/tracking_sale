@@ -15,22 +15,18 @@
 <table class="table table-striped show-task-table">
   <thead>
     <tr>
-      <th width="20%" scope="col">Staff</th>
-      <th width="20%" scope="col">Expect</th>
-      <th width="20%" scope="col">Actual</th>
-      <th width="15%" scope="col">Check-in</th>
-      <th width="15%" scope="col">Check-out</th>
-      <th width="10%" scope="col">Outlets</th>
+      <th width="25%" scope="col">Staff</th>
+      <th width="25%" scope="col">Expect</th>
+      <th width="25%" scope="col">Actual</th>
+      <th width="25%" scope="col">Outlets</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td width="20%"><%= @task.user.email %></td>
-      <td width="20%"><%= @task.expect_sale %></td>
-      <td width="20%"><%= @task.actual_sale %></td>
-      <td width="15%"><%= @task.check_in %></td>
-      <td width="15%"><%= @task.check_out %></td>
-      <td width="10%"><%= @task.outlets.length %>
+      <td width="25%"><%= @task.user.email %></td>
+      <td width="25%"><%= @task.expect_sale %></td>
+      <td width="25%"><%= @task.actual_sale %></td>
+      <td width="25%"><%= @task.outlets.length %>
     </tr>
   </tbody>
 </table>
