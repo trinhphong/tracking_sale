@@ -19,7 +19,13 @@ class Api::LocationsController < ActionController::API
       break if in_circle
     end
 
-    render json: {status: :ok, check_in: in_circle, outlets: outlets}
+    taouts = task.taskoutlets
+    outlets_of_task = []
+    taouts.each do |t|
+      outlets_of_task << { check_in: t.check_in, address: t.outlet.address , latitude: t.outlet.latitude, longitude: t.outlet.longitude }
+    end
+
+    render json: { status: :ok, check_in: in_circle, expect_sale: task.expect_sale, outlets: outlets_of_task }
   end
 
 end
