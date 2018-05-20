@@ -7,6 +7,7 @@
       <%= hidden_field_tag "outlet-longitude-#{outlet.id}", outlet.longitude %>
       <%= hidden_field_tag "outlet-address-#{outlet.id}", outlet.address %>
       <%= hidden_field_tag "outlet-priority-#{outlet.id}", Taskoutlet.find_by(task_id: @task.id, outlet_id: outlet.id).priority %>
+      <%= hidden_field_tag "outlet-check-in-#{outlet.id}", Taskoutlet.find_by(task_id: @task.id, outlet_id: outlet.id).check_in %>
     </div>
   <% end %>
 </div>

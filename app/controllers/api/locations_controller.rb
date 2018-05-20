@@ -11,6 +11,11 @@ class Api::LocationsController < ActionController::API
     outlets.each do |outlet|
       outlet_point = [outlet.latitude, outlet.longitude]
       in_circle = Geocoder::Calculations.distance_between(center_point, outlet_point) < radius
+
+      if in_circle
+        taskoutlet = Taskoutlet.find_by(task_id: task.id, outlet_id: outlet.id)
+        taskoutlet.update_columns(check_in: true)
+      end
       break if in_circle
     end
 

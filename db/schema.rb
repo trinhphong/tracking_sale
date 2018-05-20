@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180512081035) do
+ActiveRecord::Schema.define(version: 20180520142243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,9 +43,10 @@ ActiveRecord::Schema.define(version: 20180512081035) do
   create_table "taskoutlets", force: :cascade do |t|
     t.integer  "task_id"
     t.integer  "outlet_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "priority"
+    t.boolean  "check_in",   default: false
     t.index ["outlet_id"], name: "index_taskoutlets_on_outlet_id", using: :btree
     t.index ["task_id"], name: "index_taskoutlets_on_task_id", using: :btree
   end

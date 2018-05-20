@@ -101,9 +101,11 @@ jQuery ->
             outlet_id = $("#hidden-field-task-outlet-#{idx} .hidden-task-outet-id").val()
             address   = $("#outlet-address-#{outlet_id}").val()
             priority  = $("#outlet-priority-#{outlet_id}").val()
+            status    = $("#outlet-check-in-#{outlet_id}").val()
             contentString =
               '<div><b>Priority:  </b>'    + priority   + '</div>' +
-              '<div><b>Address:  </b>'     + address    + '</div>'
+              '<div><b>Address:  </b>'     + address    + '</div>' +
+              '<div><b>Check-in: </b>'     + status     + '</div>'
             infowindow.setContent contentString
             infowindow.open show_map, marker
             return
