@@ -8,9 +8,11 @@
 
 Admin.create(email: 'admin@admin.com', password: 'password')
 
-count = 0
-5.times do
-  email = "staff#{count}@staff.com"
-  User.create(email: email, password: 'password')
-  count = count + 1
-end
+# count = 0
+# 5.times do
+#   email = "staff#{count}@staff.com"
+#   User.create(email: email, password: 'password', phone_number: "0123123123#{count}")
+#   count = count + 1
+# end
+
+User.create(email: "huutuan@gmail.com", password: 'password', phone_number: "09342753726")

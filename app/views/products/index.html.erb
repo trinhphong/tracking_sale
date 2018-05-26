@@ -1,0 +1,33 @@
+<div class="text-center">
+  <h1>List Products</h1>
+</div>
+
+<div class="row">
+  <div class="col-10"></div>
+  <div class="col-2">
+    <%= link_to 'Create', new_product_path, class: 'btn btn-primary form-control' %>
+  </div>
+</div>
+
+<table class="table table-striped task-table">
+  <thead>
+    <tr>
+      <th width="5%" scope="col">#</th>
+      <th width="25%" scope="col">Name</th>
+      <th width="25%" scope="col">Price</th>
+      <th width="35%" scope="col">Image</th>
+      <th width="10%" scope="col">Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each.with_index(1) do |product, idx| %>
+      <tr>
+        <th width="5%" scope="row"><%= idx %></th>
+        <td width="25%"><%= product.name %></td>
+        <td width="25%"><%= product.price %></td>
+        <td width="35%"><%= image_tag product.img_url, style: 'height: 100px; width: 100px' %></td>
+        <td width="10%"><%= link_to 'Detail', product_path(product.id)%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

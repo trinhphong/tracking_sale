@@ -1,0 +1,36 @@
+<%= form_for :product,
+             url: {action: "create"} do |f| %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :name, 'Name' %>
+        <%= f.text_field :name, class: 'form-control', required: true %>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :img_url, 'Image Url' %>
+        <%= f.text_field :img_url, class: 'form-control', required: true %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :price, 'Price' %>
+        <%= f.number_field :price, min: 0, class: 'form-control', required: true %>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.submit 'Save', class: 'btn btn-primary form-control' %>
+        </div>
+      </div>
+    </div>
+<% end %>

@@ -1,0 +1,28 @@
+<h1>Show Product</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= label_tag :name, 'Name' %>
+      <%= text_field_tag :name, @product.name, class: 'form-control', readonly: true %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= label_tag :price, 'Price' %>
+      <%= text_field_tag :price, @product.price, class: 'form-control', readonly: true %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= label_tag :Image, 'Image' %>
+      <%= image_tag @product.img_url, style: 'height: 300px; width: 300px', class: 'form-control' %>
+    </div>
+  </div>
+</div>

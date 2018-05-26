@@ -30,25 +30,22 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <%= f.label :expect_sale, 'Expect Sale' %>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-              </div>
-              <%= f.number_field :expect_sale, min: 0.0, class: 'form-control', required: true %>
-            </div>
+            <%= f.label :product_id, 'Product' %>
+            <%= f.select :product_id, options_from_collection_for_select(Product.all, :id, :name), class: 'form-control'
+            %>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <%= f.label :outlets, 'Outlets' %>
-            <%= f.collection_select :outlet_ids,
-              Outlet.all ,:id,:address,
-              { include_blank: true},
-              { class: 'chosen-select form-control', :multiple=>true, :data => { :placeholder => ' ' }}
-            %>
+            <%= f.label :quantity, 'Quantity' %>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">/</span>
+              </div>
+              <%= f.number_field :quantity, min: 0, class: 'form-control', required: true %>
+            </div>
           </div>
         </div>
       </div>

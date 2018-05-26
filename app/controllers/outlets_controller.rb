@@ -15,6 +15,12 @@ class OutletsController < ApplicationController
 
   def create
     @outlet = Outlet.new(outlet_params)
+    params[:outlet][:product_ids].each do |product|
+      if !product.empty?
+        @outlet.outletproducts.build(product_id: product)
+      end
+    end
+
     if @outlet.save
       flash[:success] = "Oulet added!"
       redirect_to outlet_path(@outlet)

@@ -1,29 +1,32 @@
-<div class="hidden-data">
-  <%= hidden_field_tag "number-of-tasks", @tasks.length %>
-  <% @tasks.each_with_index do |task, idx| %>
-    <div id="hidden-field-task-<%=idx%>">
-      <%= hidden_field_tag "task-#{task.id}", task.id, class: 'hidden-task-id' %>
-      <%= hidden_field_tag "staff-email-#{task.id}", task.user.email, class: 'hidden-staff-email' %>
-      <%= hidden_field_tag "task-note-#{task.id}", task.note, class: 'hidden-task-note' %>
-      <%= hidden_field_tag "latitude-#{task.id}", task.latitude, class: 'hidden-latitude' %>
-      <%= hidden_field_tag "longitude-#{task.id}", task.longitude, class: 'hidden-longitude' %>
-      <%= hidden_field_tag "expect-sale-#{task.id}", task.expect_sale, class: 'hidden-expect-sale' %>
-      <%= hidden_field_tag "actual-sale-#{task.id}", task.actual_sale, class: 'hidden-actual-sale' %>
-      <%= hidden_field_tag "check-in-#{task.id}", task.check_in, class: 'hidden-check-in' %>
-      <%= hidden_field_tag "check-out-#{task.id}", task.check_in, class: 'hidden-check-out' %>
-    </div>
-  <% end %>
-</div>
-
-<div class="container">
+<div class="container-fluid">
   <h1 class="text-center">
-    Tasks of <%= Date.today %>
+    List Users
   </h1>
 
-  <div class="card">
-    <div class="card-block">
-      <div id="dashboard-map"></div>
+  <div class="row">
+    <div class="col-10"></div>
+    <div class="col-2">
+      <%= link_to 'Create', new_user_registration_path, class: 'btn btn-primary form-control' %>
     </div>
   </div>
+
+  <table class="table table-striped" style="margin-top: 30px">
+    <thead>
+      <tr>
+        <th width="5%" scope="col">#</th>
+        <th width="45%" scope="col">Email</th>
+        <th width="45%" scope="col">Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each.with_index(1) do |user, idx| %>
+        <tr>
+          <th width="5%" scope="row"><%= idx %></th>
+          <td width="45%"><%= user.email %></td>
+          <td width="45%"><%= user.phone_number %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 

@@ -37,6 +37,14 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :products, 'Products' %>
+            <%= f.collection_select :product_ids, Product.all, :id, :name, { include_blank: true }, { class: 'chosen-select form-control' , multiple: true, data: { placeholder: ''} } %>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-sm-6">
       <div class="card">
