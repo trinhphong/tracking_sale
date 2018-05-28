@@ -1,16 +1,18 @@
-<div class="hidden-data">
-  <%= hidden_field_tag "number-of-outlets", @task.outlets.length %>
-  <% @task.outlets.each_with_index do |outlet, idx| %>
-    <div id="hidden-field-task-outlet-<%=idx%>">
-      <%= hidden_field_tag "task-outlet-#{outlet.id}", outlet.id, class: 'hidden-task-outet-id' %>
-      <%= hidden_field_tag "outlet-latitude-#{outlet.id}", outlet.latitude %>
-      <%= hidden_field_tag "outlet-longitude-#{outlet.id}", outlet.longitude %>
-      <%= hidden_field_tag "outlet-address-#{outlet.id}", outlet.address %>
-      <%= hidden_field_tag "outlet-priority-#{outlet.id}", Taskoutlet.find_by(task_id: @task.id, outlet_id: outlet.id).priority %>
-      <%= hidden_field_tag "outlet-check-in-#{outlet.id}", Taskoutlet.find_by(task_id: @task.id, outlet_id: outlet.id).check_in %>
-    </div>
-  <% end %>
-</div>
+<% if false %>
+  <div class="hidden-data">
+    <%= hidden_field_tag "number-of-outlets", @task.outlets.length %>
+    <% @task.outlets.each_with_index do |outlet, idx| %>
+      <div id="hidden-field-task-outlet-<%=idx%>">
+        <%= hidden_field_tag "task-outlet-#{outlet.id}", outlet.id, class: 'hidden-task-outet-id' %>
+        <%= hidden_field_tag "outlet-latitude-#{outlet.id}", outlet.latitude %>
+        <%= hidden_field_tag "outlet-longitude-#{outlet.id}", outlet.longitude %>
+        <%= hidden_field_tag "outlet-address-#{outlet.id}", outlet.address %>
+        <%= hidden_field_tag "outlet-priority-#{outlet.id}", Taskoutlet.find_by(task_id: @task.id, outlet_id: outlet.id).priority %>
+        <%= hidden_field_tag "outlet-check-in-#{outlet.id}", Taskoutlet.find_by(task_id: @task.id, outlet_id: outlet.id).check_in %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
 <table class="table table-striped show-task-table">
   <thead>
