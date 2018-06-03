@@ -11,8 +11,7 @@
         <th width="5%" scope="col">#</th>
         <th width="40%" scope="col">Address</th>
         <th width="15%" scope="col">Position</th>
-        <th width="5" scope="col"></th>
-        <th width="5" scope="col"></th>
+        <th width="10%" scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -21,8 +20,7 @@
           <th width="5%" scope="row"><%= idx %></th>
           <td width="40%"><%= outlet.address %></td>
           <td width="15%"><%= outlet.latitude %> - <%= outlet.longitude %></td>
-          <td width="5%"><%= link_to 'View', outlet_path(outlet.id) %></td>
-          <td width="5%"><%= link_to 'Delete', outlet_path(outlet.id), method: :delete %></td>
+          <td width="10%"><%= link_to 'View', outlet_path(outlet.id) %></td>
         </tr>
       <% end %>
     </tbody>

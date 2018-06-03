@@ -32,7 +32,7 @@ class OutletsController < ApplicationController
 
   def destroy
     @outlet = Outlet.find(params[:id])
-    if @outlet.destroy
+    if @outlet.delete
       flash[:success] = "Outlet deleted!"
     else
       flash[:error] = "Action failed!"

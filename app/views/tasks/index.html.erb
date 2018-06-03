@@ -21,8 +21,8 @@
     <tr>
       <th width="5%" scope="col">#</th>
       <th width="25%" scope="col">Staff</th>
-      <th width="25%" scope="col">Expect</th>
-      <th width="25%" scope="col">Actual</th>
+      <th width="25%" scope="col">Product</th>
+      <th width="25%" scope="col">Quantity</th>
       <th width="20%" scope="col">Detail</th>
     </tr>
   </thead>
@@ -31,8 +31,8 @@
       <tr>
         <th width="5%" scope="row"><%= idx %></th>
         <td width="25%"><%= task.user.email %></td>
-        <td width="25%"><%= task.expect_sale %></td>
-        <td width="25%"><%= task.actual_sale %></td>
+        <td width="25%"><%= task.product.name %></td>
+        <td width="25%"><%= task.quantity %></td>
         <td width="20%"><%= link_to 'Detail', task_path(task.id)%></td>
       </tr>
     <% end %>

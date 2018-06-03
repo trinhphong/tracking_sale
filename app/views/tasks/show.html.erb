@@ -14,6 +14,18 @@
   </div>
 <% end %>
 
+<div class="hidden-data">
+  <%= hidden_field_tag "number-of-outlets", @outlets.length %>
+  <% @outlets.each_with_index do |outlet, idx| %>
+    <div id="hidden-field-task-outlet-<%=idx%>">
+      <%= hidden_field_tag "task-outlet-#{outlet.id}", outlet.id, class: 'hidden-task-outet-id' %>
+      <%= hidden_field_tag "outlet-latitude-#{outlet.id}", outlet.latitude %>
+      <%= hidden_field_tag "outlet-longitude-#{outlet.id}", outlet.longitude %>
+      <%= hidden_field_tag "outlet-address-#{outlet.id}", outlet.address %>
+    <% end %>
+  </div>
+</div>
+
 <table class="table table-striped show-task-table">
   <thead>
     <tr>

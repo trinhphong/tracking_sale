@@ -26,6 +26,8 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    outlet_ids = Outletproduct.where(product_id: @task.product_id).map(&:outlet_id)
+    @outlets = Outlet.where(id: outlet_ids)
   end
 
   private
