@@ -23,7 +23,7 @@ class Api::SaleController < ActionController::API
   def sell
     task = Task.find(params[:IdTask])
     quantity = params[:quantity].to_i
-    current_quantity = task.quantity
+    current_quantity = task.actual_quantity
     new_quantity = current_quantity + quantity
 
     task.update_columns(actual_quantity: new_quantity)
